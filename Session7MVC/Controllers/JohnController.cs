@@ -25,15 +25,9 @@ namespace Session7MVC.Controllers
             return "ok!";
         }
 
-        public string ShowAll()
+        public ActionResult ShowAll()
         {
-            string result = "Result <br />";
-            foreach (var message in database.Messages.ToList())
-            {
-                result = result + message.Text + "<br />";
-            }
-
-            return result;
+            return View(database.Messages.ToList());
         }
     }
 }
