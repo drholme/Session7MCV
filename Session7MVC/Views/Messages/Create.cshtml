@@ -11,13 +11,13 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Message</h4>
+        <h4>Message <span id="worbins"></span></h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control", @onkeydown="WordCount()", @onchange="WordCount()" } })
                 @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,3 +33,9 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script>
+    function WordCount() {
+        document.getElementById("worbins").innerHTML = Math.floor(document.getElementById("Text").value.length / 6)
+    }
+</script>
